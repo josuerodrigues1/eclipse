@@ -25,6 +25,13 @@ RUN export uid=1000 gid=1000 && \
     chmod 0440 /etc/sudoers.d/developer && \
     chown ${uid}:${gid} -R /home/developer
 
+RUN mkdir /home/developer/eclipse-workspace
+RUN chmod 777 /home/developer/eclipse-workspace
+
+COPY ./eclipse-workspace/ /home/developer/eclipse-workspace
+
+RUN chown -R developer. /home/developer/eclipse-workspace
+
 USER developer
 ENV HOME /home/developer
 #CMD /usr/bin/firefox
